@@ -1,0 +1,19 @@
+# Backend Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install dependencies
+COPY backend/package*.json ./
+RUN npm install
+
+# Copy source code
+COPY backend .
+
+# Build the application
+RUN npm run build
+
+EXPOSE 3001
+
+# Start the application
+CMD ["npm", "run", "start:prod"]
